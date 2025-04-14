@@ -1,0 +1,120 @@
+% Copyright (c) 2008-2009 solvethis
+% Copyright (c) 2010-2016,2018-2019,2021 Casper Ti. Vector
+% Copyright (c) 2021 Kurapica
+% Copyright (c) 2021 iofu728
+% Overleaf version.
+
+%*********************************************************************
+% iofu728-pkuthss: 北京大学研究生学位论文模板
+% 2021/06/09 v1.0.0
+%
+% 重要提示：
+%   1. 当前overleaf版符合2021研究生学位论文要求，可通过图书馆审核
+%   2. 当前版本基于pkuthss v1.9.0
+%   3. 请使用UTF-8编码，XeLaTeX方式编译
+%   4. 请仔细阅读用户文档
+%   5. 修改、使用、发布本文档类请务必遵循LaTeX Project Public License和知识共享4.0
+%   6. 如有疑问github/iofu728/pkuthss上提问或联系作者@iofu728
+%*********************************************************************
+
+\documentclass[fontset=fandol,ugly]{pkuthss}
+  % 学位论文模式  ugly    (默认打开，请保留)
+  % 盲审模式      blind   (默认关闭)
+  % 字体库        fontset
+  %   auto | windows | windows@overleaf | mac | fandol | ubuntu | none
+  % windows*, mac为商业字体，如需使用请遵循相应版权协议(默认下overleaf中不可用)
+  % fandol与windows效果相近，但字符库偏少，推荐使用(默认);
+  % ubuntu字体效果偏差较大; 设为none时需自行配置字体集;
+\usepackage[backend=biber,style=gb7714-2015]{biblatex}
+  % 参考文献遵循GB/T 7714-2015标准，使用biblatex-gb7714-2015 宏包。
+  % 此处使用顺序编码制，如使用著者-出版年制则更改为b7714-2015ay。
+\input{chap/ReviewTableHead}
+\usepackage{xeCJK} % 用于引入楷体
+\usepackage{soul} % 用于设置下划线宽度
+\setul{}{2pt}
+\setmainfont{Times New Roman} % Times New Roman 作为默认英文字体
+% 引入楷体，请改成自己系统里对应的名字
+\setCJKfamilyfont{kaiti}[AutoFakeBold=1.5]{AR PL KaitiM GB}
+\newcommand{\kaiti}{\CJKfamily{kaiti}}
+% 示例文档用包和设定，该段均可移除.
+\usepackage{enumitem,fancyvrb}
+\usepackage{booktabs,multirow,longtable,makecell} % 表格相关
+\RecustomVerbatimEnvironment{Verbatim}{Verbatim}{frame = single, tabsize = 4, fontsize=\footnotesize}
+\renewcommand{\v}[1]{\boldsymbol{#1}}
+\newcommand\pkg[1]{\textsf{#1}}
+
+
+
+% 参考文献边距字体
+\setlength{\bibitemsep}{3bp}
+\renewcommand*{\bibfont}{\zihao{5}\linespread{1.27}\selectfont}
+
+\pkuthssinfo{
+	cthesisname = {基于XXXX的XXXX系统设计与实现}, %
+ 	thesiscover = {本科生毕业论文},
+	ethesisname = {Master Thesis},
+	ctitle = {基于XXXX的XXXX系统设计与实现},
+	etitle = {Design and implementation of a XXXXX system based on XXXX},
+	cauthor = {扎克·施耐德}, eauthor = {Zack Snyder},
+	studentid = {180XXXXXXX},
+	% 具体时间以教务为准，初稿3月，送审4月，答辩5月，最终6月。
+	date = {\zhdigits{2022}\ \ 年\ \ \zhnumber{6}\ \ 月},
+	school = {XXXXXX学院},
+	cmajor = {XXXX}, emajor = {XXXX},
+	direction = {XXXX},
+	mentorlines = {1}, % 导师个数
+	% 副教授 A.P. 讲师 Lec.
+	cmentor = {XXX\ \ 教授}, ementor = {Prof.\ XXX},
+	ckeywords = {A，B，C，D},
+	ekeywords = {A,B,C,D},
+	% 盲审模式参数, 需在documentclass增加blind
+	blindid = {XXXXXXXXX}, discipline = {XXXX}
+}
+\addbibresource{ref.bib}
+
+
+\begin{document}
+	\frontmatter
+	\pagestyle{empty}
+	\maketitle
+	\clearpage
+	\input{chap/ReviewTable}
+	\clearpage
+	%\cleardoublepage
+	% 需替换门户版权声明pdf
+	
+	\include{chap/copy}
+
+	%\cleardoublepage
+	\clearpage
+	\pagestyle{plain}
+	\setcounter{page}{0}
+	\pagenumbering{Roman}
+	\include{chap/abs}
+	% \renewcommand{\contentsname}{\centerline{目\hphantom{汉字}录}} % skipher
+	\renewcommand{\contentsname}{\centerline{目\quad 录}} % skipher
+	\tableofcontents
+	% 如有需要使用主要符号对照表
+	\include{chap/deno}
+
+	\mainmatter
+	\include{chap/chap1}
+	\include{chap/chap2}
+	\include{chap/chap3}
+	\include{chap/chap4}
+	\include{chap/chap5}
+	\include{chap/chap6}
+    
+    \appendix
+    \printbibliography[heading = bibintoc]
+    % 如有需要使用研究生成果页
+    \include{chap/ach}
+
+	\backmatter
+	\include{chap/ack}
+	% 需替换门户原创页pdf/扫描pdf
+	\include{chap/origin}
+
+\end{document}
+
+% vim:ts=4:sw=4

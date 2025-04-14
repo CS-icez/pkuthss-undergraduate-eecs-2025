@@ -1,0 +1,278 @@
+\chapter{引论}
+\label{chap:introduction}
+
+本章为\iofupkuthss{}\footnote{\iofupkuthss{} 是基于\pkuthss{}~\cite{casper2011pkuthss}针对硕士研究生学位论文要求进行适配的\LaTeX{}文档类，符合北京大学硕士学位论文写作规范，并能通过图书馆审查。其官方仓库为\url{https://github.com/iofu728/pkuthss}，当前版本\iofuversion。}文档类的示例文档，对硕士学位论文写作过程中常见用法和问题进行介绍说明。
+
+\section{封面及pkuthssinfo相关}
+\label{sec:cover-pkuthssinfo}
+
+pkuthssinfo相关配置与\pkuthss{}原文档类完全一致，均为参数配置，可参考\pkuthss{}文档\footnote{\url{https://bbs.pku.edu.cn/attach/c8/3e/c83e980c93b838a3/pkuthss-bootstrap-0.1.7.pdf}}。
+目前\iofupkuthss{}基于\pkuthss{} \iofubaseversion{}进行开发。
+
+封面部分参考《北京大学研究生学位论文写作指南V2.0-2019》(以下简称写作指南)第1.1节中描述和《硕士论文模板2020》进行修改。
+
+\begin{Verbatim}
+\pkuthss{}info{
+	cthesisname = {硕士学位论文},
+ 	thesiscover = {硕士研究生学位论文},
+	ethesisname = {Master Thesis},
+	ctitle = {基于XXXX的XXXX系统设计与实现},
+	etitle = {Design and implementation of a XXXXX system based on XXXX},
+	cauthor = {扎克·施耐德}, eauthor = {Zack Snyder},
+	studentid = {180XXXXXXX},
+	% 具体时间以教务为准，初稿3月，送审4月，答辩5月，最终6月。
+	date = {\zhdigits{2021}\ \ 年\ \ \zhnumber{6}\ \ 月},
+	school = {XXXXXX学院},
+	cmajor = {XXXX}, emajor = {XXXX},
+	direction = {XXXX},
+	mentorlines = {2}, % 导师个数
+	% 副教授 A.P. 讲师 Lec.
+	cmentor = {XXX\ \ 教授\\YYY\ \ 教授}, ementor = {Prof.\ XXX and Prof.\ YYY},
+	ckeywords = {A，B，C，D},
+	ekeywords = {A,B,C,D},
+	% 盲审模式参数, 需在documentclass增加blind
+	blindid = {XXXXXXXXX}, discipline = {XXXX}
+}
+\end{Verbatim}
+
+\section{字体设定}
+\label{sec:fontset}
+
+本文档类提供五种默认字体设定分别为\verb|windows|，\verb|windows@overleaf|，\verb|mac|，\verb|ubuntu|，\verb|fandol|。
+其中，默认情况，Overleaf平台下仅可使用\verb|fandol|，\verb|ubuntu|两种模式，\textbf{推荐使用}\verb|fandol|\textbf{模式(默认)}。
+如遇字符不显示问题，可使用\verb|ubuntu|模式，或者自行收集上传所需的字体文件\verb|simsun.ttf|，\verb|simhei.ttf|，\verb|simfang.ttf|，\verb|simkai.ttf|至根目录并使用\verb|windows@overleaf|模式(注意文件名称和 版权问题)，亦或者下载至本地windows环境使用\verb|windows|模式。详细可见第\ref{chap:related}章文档内容。
+
+\section{版权声明与原创页}
+\label{sec:copy-origin}
+
+写作指南中要求各学生从校内门户或者从研究生院网站下载相应的文件进行签名后扫描替换或者直接替换。
+\textbf{需要注意的是}，门户生成的PDF文件未嵌入字体，其指定字体为华文宋体(即STSong)。
+由于各个PDF预览器和操作系统预设的字体不同，导致呈现效果差异较大
+(据不完全统计，Mac 端PDF Expert显示的是苹方简体，Chrome显示的是方正粗宋，而Acrobat显示的是AdobeSongStd，Windows端Edge显示的是方正悠黑，在这之中Acrobat字体效果最为接近)。
+请务必使用Acrobat进行打印，或者使用本包生成文件进行打印
+\footnote{由于样例中的PDF被编辑过，最终生成文件在不同PDF浏览器下仍然显示不同，使用门户下载文件生成则可以保持在不同PDF浏览器效果一致。}。
+
+此外，写作指南中申明目录中需要保留原创页\footnote{对于这点部分人解读写作指南为目录中不需要，实际上写作指南第1.10节中声明，致谢(后记或说明)、学位论文原创性声明和授权使用说明是论文的最后两项内容，目录中和章平级。}。
+本文使用\verb|textblock|和\verb|colorbox|宏包通过遮掩和覆盖的方式实现保留目录前提下的的PDF文件插入，其中参数按照PDF格式为A4进行调校，如有需要可以进行微调。
+
+\begin{Verbatim}
+    \begin{textblock}{1}(-0.8,-0.08)
+    \colorbox{white}{
+        \includegraphics[height = 1.2448\textheight]{文件路径}
+    }
+    \end{textblock}
+\end{Verbatim}
+
+此外在论文电子版制作过程中，需要替换原创页签名扫描件，使用相同方式即可。
+
+\section{摘要部分}
+\label{sec:abstract}
+
+在\verb|\begin{cabstract}|和\verb|\begin{eabstract}|环境中进行书写。
+如论文工作受到基金资助，需要在中文摘要第一页的页脚处标注：本研 究得到某某基金（编号：xxx）资助。
+
+\section{目录}
+\label{sec:directory}
+
+按照写作指南和《硕士论文模板2020》进行调整，1）对章级增加点线；2）对间距和字体进行调整。
+
+\section{主要符号对照表}
+\label{sec:denotation}
+
+参考\verb|chap/deno.tex|即可，在\verb|\begin{denotation}|环境下，使用\verb|\item[X] Y|分别表示符号及其说明。
+
+已知问题: 符号处不能输入中括号$[$,$]$。
+
+\section{图表相关}
+\label{sec:table-figure}
+
+\subsection{表格样例}
+\label{sec:table-example}
+
+一般学术论文需要使用三线表(如表~\ref{tab:example-table-basic})，需要依赖宏包\verb|booktabs|，使用\verb|\toprule|，\verb|\midrule|，\verb|\bottomrule|控制三线。
+此外表序和表名位于表格的上方。
+如果需要对表格内进行脚注，可通过\texttt{minipage}中嵌套\texttt{tabular}来实现，具体可参考Stack Overflow\footnote{\url{https://stackoverflow.com/questions/2888817/footnotes-for-tables-in-latex}}。
+
+{\begin{longtable}[c]{c*{7}{r}}
+\caption[续表]{续表样例表。}
+\label{tab:example-table-continue}\\
+\toprule[1.5pt]
+ \multicolumn{1}{c}{年龄} & 性别 & \multicolumn{1}{c}{cp} & \multicolumn{1}{c}{静息血压} & \multicolumn{1}{c}{chol}
+& \multicolumn{1}{c}{空腹血糖>} & \multicolumn{1}{c}{restecg} & \multicolumn{1}{c}{thalachh} \\
+\multicolumn{1}{c}{(岁)} & & \multicolumn{1}{c}{胸痛型}&
+\multicolumn{1}{c}{毫米汞柱}& \multicolumn{1}{c}{胆固醇}& \multicolumn{1}{c}{
+   120 mg/dl}& 静息状态 & 最大心率 \\\midrule[1pt]
+\endfirsthead
+\multicolumn{8}{c}{续表~\thetable\hskip1em 续表样例表。}\\
+\toprule[1.5pt]
+ \multicolumn{1}{c}{年龄} & 性别 & \multicolumn{1}{c}{cp} & \multicolumn{1}{c}{静息血压} & \multicolumn{1}{c}{chol}
+& \multicolumn{1}{c}{空腹血糖>} & \multicolumn{1}{c}{restecg} & \multicolumn{1}{c}{thalachh} \\
+\multicolumn{1}{c}{(岁)} & & \multicolumn{1}{c}{胸痛型}&
+\multicolumn{1}{c}{毫米汞柱}& \multicolumn{1}{c}{胆固醇}& \multicolumn{1}{c}{
+   120 mg/dl}& 静息状态 & 最大心率 \\\midrule[1pt]
+\endhead
+\hline
+\multicolumn{8}{r}{续下页}
+\endfoot
+\endlastfoot
+63 & 1 & 3 & 145 & 233 & 1 & 0 & 150 \\
+37 & 1 & 2 & 130 & 250 & 0 & 1 & 187 \\
+41 & 0 & 1 & 130 & 204 & 0 & 0 & 172 \\
+56 & 1 & 1 & 120 & 236 & 0 & 1 & 178 \\
+57 & 0 & 0 & 120 & 354 & 0 & 1 & 163 \\
+57 & 1 & 0 & 140 & 192 & 0 & 1 & 148 \\
+56 & 0 & 1 & 140 & 294 & 0 & 0 & 153 \\
+44 & 1 & 1 & 120 & 263 & 0 & 1 & 173 \\
+52 & 1 & 2 & 172 & 199 & 1 & 1 & 162 \\
+57 & 1 & 2 & 150 & 168 & 0 & 1 & 174 \\
+54 & 1 & 0 & 140 & 239 & 0 & 1 & 160 \\
+48 & 0 & 2 & 130 & 275 & 0 & 1 & 139 \\
+49 & 1 & 1 & 130 & 266 & 0 & 1 & 171 \\
+64 & 1 & 3 & 110 & 211 & 0 & 0 & 144 \\
+\bottomrule[1.5pt]
+\end{longtable}
+\footnotesize 注：数据来源于Kaggle Heart Attack Analysis \& Prediction Data Set。}
+
+如需要注明表格中数据来源，则可使用类似的方式，见表~\ref{tab:example-table-source-foot}。
+
+\begin{table*}[htb]
+    \centering
+    \begin{minipage}[t]{0.55\linewidth} %
+        \caption[表格脚注样例表]{表格脚注样例表。表名可通过中括号添加缩略名。}
+        \label{tab:example-table-basic}
+        \begin{small}
+        \begin{tabular}{@{}lccccc@{}}
+         \toprule[1.5pt]
+         & \textbf{X} & \textbf{Y} & \textbf{Z} & \textbf{N} & \textbf{M} \\
+         \midrule[1pt]
+            默认        & 99.99 & 99.99 & 99.99 & 99.99\footnote{表格中的脚注1} & 99.99 \\
+          \quad w/o X   & 99.99 & 99.99 & 99.99 & 99.99 & 99.99 \\
+          \quad w/o Y   & 99.99 & 99.99 & 99.99 & 99.99 & 99.99 \\
+          \quad w/o Z   & 99.99\footnote{表格中的脚注2} & 99.99 & 99.99 & 99.99 & 99.99 \\
+          \quad w/o N   & 99.99 & 99.99 & 99.99 & 99.99 & 99.99 \\
+          \quad w/o M   & 99.99 & 99.99 & 99.99 & 99.99 & 99.99 \\
+          \bottomrule[1.5pt]
+        \end{tabular}
+        \end{small}
+    \end{minipage}
+\end{table*}
+
+\begin{table*}[htbp]
+   \centering
+   \caption[数据来源注释表]{表格数据来源注释样例表。}
+   \label{tab:example-table-source-foot}
+   \begin{minipage}[t]{0.9\textwidth}
+   \begin{small}
+   \begin{tabular}{@{}l|ccc|ccc@{}}
+   \toprule
+   \multirow{2}{*}{\textbf{Model}} & \multicolumn{3}{c|}{\textbf{数据集A}} & \multicolumn{3}{c}{\textbf{数据集B}} \\ \cmidrule(l){2-7} 
+    & \textbf{指标a}(\%) & \textbf{指标b}(\%) & \textbf{指标c} & \textbf{指标a} (\%) & \textbf{指标b}(\%) & \textbf{指标c} \\ \midrule
+      \citet{devlin2018bert}      &99.99  & 99.99  & 99.99  &99.99  & 99.99  & 99.99  \\
+      \citet{yang2019xlnet}      &99.99  & 99.99  & 99.99  &99.99  & 99.99  & 99.99  \\
+    \bottomrule
+   \end{tabular}\\[6pt]
+   \footnotesize 注：数据来源XXXXXX。\\
+   \end{small}
+   \end{minipage}
+\end{table*}
+
+当表格较大，不能在一页内打印时，可以“续表”的形式另页打印，可使用宏包\verb|longtable|实现，如表~\ref{tab:example-table-continue}。
+
+\subsection{图片样例}
+\label{sec:figure-example}
+
+\begin{figure}[htb]
+  \centering
+  \subfloat[北京大学校徽]{
+    \label{sfig:example-fig-logo-fig}
+    \includegraphics[height=2cm]{img/pku-fig-logo}}\hspace{4em}
+  \subfloat[北京大学中文校名，依照北京大学标识管理办公室出具的北大标识使用基本规范进行使用]{
+    \label{sfig:example-fig-logo-text}
+    \includegraphics[height=2cm]{img/pku-text-logo}}
+  \caption{包含子图形的大图形}
+  \label{fig:example-fig-subfloat}
+\end{figure}
+
+当需要插入多个子图的时候，可以选用宏包\verb|subfloat|，不推荐使用
+\verb|subfigure| 和 \verb|subtable|。
+
+若使用继承于\verb|subfigure|的宏包，例如\verb|subfloat|、\verb|subfigure|等，则可直接使用引用\verb|\ref{sfig:xxxx}|引用子图label，如图~\ref{sfig:example-fig-logo-fig}。
+否则需要引用主图，再单独标注子图序号，以便符合学位论文要求。
+
+此外，与表格相反，图序和图名需要位于图片的下方。
+如果含有子图，每个子图需要具有相应的子图名。
+
+
+如果需要并排使用两个独立的图形，分别编排图序，则可使用\verb|minipage|，如图~\ref{fig:example-fig-abreast-1}和图~\ref{fig:example-fig-abreast-2}。
+
+\begin{figure}[htb]
+\begin{minipage}{0.48\textwidth}
+  \centering
+  \includegraphics[height=2cm]{img/pku-fig-logo}
+  \caption{北京大学校徽}
+  \label{fig:example-fig-abreast-1}
+\end{minipage}\hfill
+\begin{minipage}{0.48\textwidth}
+  \centering
+  \includegraphics[height=2cm]{img/pku-text-logo}
+  \caption{北京大学中文校名，依照北京大学标识管理办公室出具的北大标识使用基本规范进行使用}
+  \label{fig:example-fig-abreast-2}
+\end{minipage}
+\end{figure}
+
+\section{公式}
+\label{sec:equation}
+
+公式部分考虑到写作指南中无关于公式页的说明，并未做改动，使用通用\LaTeX{}规范即可。对于复杂公式需求，可使用\verb|amsmath|宏包结合Mathpix\footnote{\url{https://mathpix.com/}}等自动化识别工具。
+
+\begin{multline*}
+\int_a^b\biggl\{\int_a^b[f(x)^2g(y)^2+f(y)^2g(x)^2]
+ -2f(x)g(x)f(y)g(y)\,dx\biggr\}\,dy \\
+ =\int_a^b\biggl\{g(y)^2\int_a^bf^2+f(y)^2
+  \int_a^b g^2-2f(y)g(y)\int_a^b fg\biggr\}\,dy
+\end{multline*}
+
+上述公式来源于\citeauthor{liu2003uncertain}的《不确定规划》\citet{liu2003uncertain}。
+
+\section{参考文献}
+\label{sec:bibtex}
+
+参考文献根据写作指南使用\verb|gb7714-2015|bibstyle进行管理，具体引用命令与日常使用类似，\verb|\cite{}|，\verb|\citet{}|，\verb|\citeauthor{}|，具体用法见相应文档\footnote{\url{https://github.com/hushidong/biblatex-gb7714-2015}}。
+
+例如\verb|\cite{devlin2018bert}|=\cite{devlin2018bert}，\verb|\citeauthor{gut2013probability}|=\citeauthor{gut2013probability}，...
+相对于的bib文件的书写基本上直接用Google Scholar拷贝的BibTex即可，部分属性按提示进行微调。
+\begin{Verbatim}
+    \usepackage[backend=biber,bibstyle=gb7714-2015,citestyle=gb7714-2015]{biblatex}
+\end{Verbatim}
+
+\section{其他}
+\label{sec:other}
+
+正文不建议使用四级目录\verb|\subsubsection{}|。
+
+本示例文档参考写作指南，《硕士论文模板2020》，《清华大学学位论文\LaTeX{}模板使用示例文档》和《\pkuthss{} 使用说明》进行书写。
+遵循 \LaTeX{} Project Public License 和 Attribution 4.0 International (CC BY 4.0) 开源协议。
+
+\section{与\pkuthss{} \iofubaseversion{}异同}
+
+\textbf{格式方面:}
+
+\begin{enumerate}
+    \item ``关键词” + ``KEY WORDS” 非粗体 
+    \item ``题目” key 字号2号，value 字号1号
+    \item ``姓名” key 字号小3
+    \item 隐藏超链接
+    \item 目录字体、样式(点线)、间距
+\end{enumerate}
+
+\textbf{功能方面:}
+
+\begin{enumerate}
+    \item 增加主要符号对照表
+    \item 脚注从当前页开始标注
+    \item 表格内脚注样式
+    \item 子图引用格式
+    \item 字体模式
+    \item 简化blind模式下用户设定
+    \item Windows 下中易宋体的粗体用假粗体替代
+\end{enumerate}

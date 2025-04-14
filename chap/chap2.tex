@@ -1,0 +1,143 @@
+\chapter{理论基础}
+\label{chap:related}
+
+本章对\pkuthss{}适配Overleaf平台的工作进行阐述和整理，希望对有兴趣了解和有修改相应需求的同学有所帮助。
+本人才疏学浅，如有纰漏欢迎交流指正。
+
+\def\XeLaTeX{
+\leavevmode
+\setbox0=\hbox{X\lower.5ex\hbox{\kern-.15em\reflectbox{E}}\kern-.1667em\LaTeX}%
+\dp0=0pt\ht0=0pt\box0
+}
+
+\section{Overleaf适配存在的问题}
+\label{sec:overleaf-problem}
+
+Overleaf是一个开源在线实时协作\LaTeX{}编辑器，其\url{www.overleaf.com}托管版本是基于Ubuntu构建的。
+Overleaf适配过程中遇到的问题不是\TeX{} Live版本\footnote{Overleaf托管版本目前支持2014-2020共8种\TeX{} Live版本。}，也不是\TeX{}排班引擎/方式的问题\footnote{Overleaf托管版本目前支持\LaTeX{}，pdf\LaTeX{}，Lua\LaTeX{}，\XeLaTeX{}四种编译方式。而\pkuthss{}是支持\XeLaTeX{}、\LaTeX{}+DVIPDFM$x$和pdf\LaTeX{}三种模式，本文选择\XeLaTeX{}编译方式进行适配。}，
+主要问题在于如何在Overleaf平台设置满足学位论文要求的字体配置。
+
+\section{适配细节}
+\label{sec:overleaf-detail}
+
+\pkuthss{}适配Overleaf问题可追溯到Casper/pkuthss的\href{https://github.com/CasperVector/pkuthss/issues/28}{Issue\#28}\footnote{\url{https://github.com/CasperVector/pkuthss/issues/28}}。
+事实上当时@lianze已经给出了正确的解决方案。
+
+\subsection{\CTeX{}字库特点}
+\label{sec:ctex-font}
+
+\pkuthss{}使用\CTeX{}宏集进行中文排版，具体为文档类\verb|ctexbook|。
+而默认情况下，\CTeX{}宏集根据编译方式和操作系统指定相应字库。
+表~\ref{tab:ctex-font-select}中归纳了默认状态下各个操作系统和编译方式对应的字库使用策略。
+
+由于本文选用了\XeLaTeX{}编译方式进行适配，而原始文档类\pkuthss{}使用的是Windows下\verb|ctex-fontset|设定，Overleaf托管版本基于Linux系统，两者区别在于原始文档类\pkuthss{}使用商用字体库(例如中易黑体、微软雅黑等)，而Overleaf托管版本使用开源中文字体库Fandol、思源字体等。
+
+原先\pkuthss{}在\verb|ctex-fontset-pkuthss.def|定义了使用的字体依赖，具体情况如下：
+\begin{itemize}
+    \item \verb|\songti|，中易宋体，作为默认中文字体使用，衬线字体，\verb|\textrm|；
+    \item \verb|\heiti|，中易黑体，无衬线字体，\verb|\bfseries|，\verb|\textbf|和\verb|\textsf|；
+    \item \verb|\fangsong|，中易仿宋，等宽字体，\verb|\texttt|；
+    \item \verb|\kaishu|，中易楷体，\verb|\textit|;
+    \item \verb|\lishu|， \verb|\youyuan|这两者在Linux下不存在，在windows、founder、macnew字库中才存在。原\pkuthss{}文档类中仅申明未使用。
+\end{itemize}
+
+\begin{table}[htbp]
+\centering
+\begin{minipage}[t]{\linewidth} %
+\caption{\CTeX{} 宏集自动配置字体策略}
+\label{tab:ctex-font-select}
+\resizebox{\linewidth}{!}{
+\begin{tabular}{*{5}{c}}
+  \toprule
+             & macOS Old\footnotemark[1]
+             & macOS New\footnotemark[2]
+             & Windows\footnotemark[3]
+             & 其他\footnotemark[4] \\
+  \midrule
+  \XeLaTeX   & \makecell{\pkg{xeCJK}\\华文字库}
+             & \makecell{\pkg{xeCJK}\\华文字库 + 苹方}
+             & \makecell{\pkg{xeCJK}\\中易字库 + 微软雅黑}
+             & \makecell{\pkg{xeCJK}\\Fandol 字库\footnotemark[5]} \\
+  \cmidrule(lr){1-5}
+  Lua\LaTeX\footnotemark[6]
+             & \makecell{\pkg{LuaTeX-ja}\\华文字库}
+             & \makecell{\pkg{LuaTeX-ja}\\华文字库 + 苹方}
+             & \makecell{\pkg{LuaTeX-ja}\\中易字库 + 微软雅黑}
+             & \makecell{\pkg{LuaTeX-ja}\\Fandol 字库} \\
+  \cmidrule(lr){1-5}
+  pdf\LaTeX
+             & 不可用
+             & 不可用
+             & \makecell{\pkg{CJK} + \pkg{zhmetrics}\\中易字库 + 微软雅黑\footnotemark[7]}
+             & 不可用 \\
+  \cmidrule(lr){1-5}
+  \makecell{\LaTeX{} + \\ DVIPDFM$x$}
+             & 不可用
+             & \makecell{\pkg{CJK} + \pkg{zhmetrics}\\华文字库 + 苹方}
+             & \makecell{\pkg{CJK} + \pkg{zhmetrics}\\中易字库 + 微软雅黑\footnotemark[7]}
+             & \makecell{\pkg{CJK} + \pkg{zhmetrics}\\Fandol 字库} \\
+  \cmidrule(lr){1-5}
+  \makecell{up\LaTeX{} + \\DVIPDFM$x$}
+             & 不可用
+             & \makecell{\pkg{zhmetrics-uptex}\\华文字库 + 苹方}
+             & \makecell{\pkg{zhmetrics-uptex}\\中易字库 + 微软雅黑}
+             & \makecell{\pkg{zhmetrics-uptex}\\Fandol 字库} \\
+  \bottomrule
+\end{tabular}
+}
+\footnotetext[1]{Yosemite (10.10) 及以前的 macOS 系统。}
+\footnotetext[2]{El Capitan (10.11) 及以后的 macOS 系统。}
+\footnotetext[3]{仅支持 Windows Vista 及以后的 Windows 操作系统。}
+\footnotetext[4]{\CTeX{}将其他系统统一归为 Linux。}
+\footnotetext[5]{由马起园、苏杰、黄晨成等人开发的开源中文字体，
+     参见：\url{https://www.ctan.org/pkg/fandol}。}
+\footnotetext[6]{Lua\LaTeX{} 编译时使用 \pkg{LuaTeX-ja} 宏包。}
+\footnotetext[7]{微软雅黑字体并不总是有效，与选项 \pkg{zhmap} 的取值有关。}
+\\[6pt]
+\footnotesize 注：数据来源与\CTeX{}宏集手册v2.5.6。\\
+\end{minipage}
+\end{table}
+
+\subsection{fontset 设定}
+\label{sec:overleaf-fontset}
+
+\iofupkuthss{}在\verb|documentclass|中增加fontset参数，并预设了5种字体模式(另外还有auto,nono两种自适应模式)，将字体设置能力暴露给用户，从而解决跨端的字体适配问题。
+
+查阅写作指南，其中说明中文字体使用宋体、仿宋和黑体，英文字体使用Times New Roman和\textsf{Arial}，共五种字体，对楷体、隶书、幼圆等字体并未提及。
+
+由于Overleaf托管版本只拥有开源字体版权\footnote{具体清单详见Overleaf字体说明文档\url{https://www.overleaf.com/learn/latex/Questions/Which_OTF_or_TTF_fonts_are_supported_via_fontspec\%3F}}，无商用字体版权(例如中易字集)。
+
+\begin{table}[htb]
+  \centering
+  \caption{\iofupkuthss{}预设的五种字体模式}
+  \label{tab:ctex-fontset}
+  \begin{minipage}[t]{0.55\linewidth} %
+  \begin{tabular}{ccccc}
+    \toprule
+    & \option{windows}\footnote{与windows@overleaf模式相同} & \option{mac}    & \option{ubuntu} & \option{fandol} \\
+    \midrule
+    宋体 & 中易宋体         & 华文宋体        & 思源宋体        & Fandol 宋体     \\
+    \heiti{黑体} & 中易黑体         & 华文黑体        & 思源黑体        & Fandol 黑体     \\
+    \fangsong{仿宋} & 中易仿宋         & 华文仿宋        & Fandol 仿宋     & Fandol 仿宋     \\
+    \bottomrule
+  \end{tabular}
+  \end{minipage}
+\end{table}
+
+本文档类申明的5种字体模式\verb|fontset|对应使用字体情况如表~\ref{tab:ctex-fontset}所示。
+其中，\verb|windows|和\verb|mac|模式为商业字体。默认情况下，不能在Overleaf平台上使用。而\verb|fandol|和\verb|ubuntu|模式为开源字体，可在Overleaf平台上使用。
+
+而对于中文字体，不同种类的字体实现细节存在细微差异，所对应的字符数也不同，对于极生僻词开源字体可能会出现显示异常的情况，如垚y\'ao，\verb|fandol|模式下不可见。
+但考虑到版权问题和字体效果，\textbf{Overleaf平台中仍然推荐使用}\verb|fandol|\textbf{模式}。
+如在使用中发现较多字符不显示，可考虑使用\verb|ubuntu|模式，或者自行收集上传\verb|simsun.ttf|，\verb|simhei.ttf|，\verb|simfang.ttf|，\verb|simkai.ttf|至根目录并使用\verb|windows@overleaf|模式(注意文件名称和版权问题)，亦或者下载至本地windows环境使用\verb|windows|模式。
+
+为支持文档类的fontset设定能力，使用宏包\verb|kvsetkeys|，\verb|kvdefinekeys|，\verb|kvoptions|对key的默认值，可选范围进行管理。
+
+\subsection{编码方式}
+\label{sec:overleaf-encoding}
+
+由于使用\XeLaTeX{}编译时，\CTeX{}宏集强制使用UTF-8编码，相对应的包括\verb|.def|文件、所有\verb|*.tex|文件均应该使用UTF-8编码方式进行编码。
+
+\subsection{粗体设定}
+
+由于Windows 下中易宋体无粗体实现，原文档类\pkuthss{}对于宋体的粗体\verb|\textbf{}|使用中易黑体替代，本文档类\iofupkuthss{}则依照Windows惯常设定，使用对应字体的假粗体作为粗体\verb|\textbf{}|。
