@@ -15,6 +15,114 @@
 
 \section{使用示例}
 
-本节给出一些我对该模板的使用示例，以供参考。
+本节给出一些我对该模板的使用示例，以供参考。图~\ref{fig:horizontal-subfig} 展示了如何水平排列子图。表~\ref{tab:mysterious} 展示了如何使用表格。算法~\ref{alg:useless} 展示了一份算法伪代码。图~\ref{fig:code-block} 展示了一个代码块。
 
-后续章节为原作者对模板的使用说明，非本人所写。
+\begin{figure}[ht]
+\centering
+\subfloat[子图 1。]
+{
+\label{fig:horizontal-subfig-1}
+\includegraphics[width=0.2\linewidth]{img/pku-fig-logo.pdf}
+} % 在下一行前不能插入空行，否则子图会垂直排列。
+\subfloat[子图 2。]
+{
+\label{fig:horizontal-subfig-2}
+\includegraphics[width=0.2\linewidth]{img/pku-fig-logo.pdf}
+}
+\caption{水平排列子图。}
+\label{fig:horizontal-subfig}
+\end{figure}
+
+\begin{table}[ht]
+\caption{一张神秘的表格。}
+\label{tab:mysterious}
+\centering
+\begin{tabular}{c c c c}
+\toprule
+\textbf{未知字母} & \textbf{未知数字 1} & \textbf{未知数字 2} & \textbf{未知数字 3} \\
+\midrule
+LMhctiwS & 98 & 440 & 3 \\
+PTA & 170 & 515  & {2} \\
+ecudeRteN & 146 & 486  & {72} \\
+ehcaCteN & 190 & 589  & 8 \\
+hcaeRraF & 246 & 640  & 4 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{algorithm}[ht]
+\renewcommand{\algorithmcfname}{算法}
+\caption{一个好像什么也没干的算法}
+\label{alg:useless}
+\small
+\DontPrintSemicolon
+\SetAlgoLined
+\SetKwInOut{KwInput}{输入}
+\SetKwInOut{KwInit}{初始化}
+\KwInput{事件 $e$}
+\KwInit{总接收事件数 $num=0$}
+\uIf{$e$ \textnormal{属于第一种情况}}{
+    $num = num + 1$\;
+    $num = num - 1$\;
+    $num = num + 1$\;
+}
+\uElseIf{$e$ \textnormal{属于第二种情况}}{
+    $num = num + 1$\;
+}
+\Else(\tcc*[f]{其他情况}){
+    \If{$num >= 0$}{
+        \lIf{\textnormal{false}}{
+            思考为什么这句话会被执行
+        }
+        $num = num + 1$\;
+    }
+}
+\end{algorithm}
+
+\begin{figure}[tb]
+\centering
+\begingroup
+\definecolor{comment}{rgb}{0, 0.5, 0}
+\definecolor{type}{rgb}{0.17, 0.57, 0.69}
+\definecolor{number}{rgb}{0, 0.5, 0}
+\definecolor{string}{rgb}{0.75, 0.08, 0.08}
+\definecolor{func}{rgb}{0.54, 0.17, 0.89}
+\lstset{
+    backgroundcolor=\color{white},   % 背景颜色
+    frame=single,                    % 边框样式
+    rulecolor=\color{black},         % 边框颜色 
+    basicstyle=\ttfamily\small,      % 基本字体样式
+    numbers=left,                    % 行号位置
+    numberstyle=\tiny\color{gray},   % 行号样式
+    breaklines=true,                 % 自动换行
+    commentstyle=\color{comment},    % 注释样式
+    comment=[l]{//},
+    stringstyle=\color{comment},
+    string=[b]",
+    showstringspaces=false,
+    keywordstyle=[1]\color{blue},    % 关键字样式
+    keywordstyle=[2]\color{type},
+    keywordstyle=[3]\color{func},
+    keywords=[1]{thread, temp},
+    morekeywords=[2]{Client},
+    morekeywords=[3]{Send, Receive, Assert, Exit},
+}
+\begin{lstlisting}
+thread(Client) LockOp {
+Acquire:
+  Send(acquire_request);
+End:
+  temp pkt = Receive();
+  Assert(pkt.type == ACK_OF_ACQUIRE,
+      "unexpected packet type");
+  Exit();
+}
+\end{lstlisting}
+\endgroup
+\caption{代码块示例。}
+\label{fig:code-block}
+\end{figure}
+
+\section{后续章节}
+
+后续章节为原作者对模板的使用说明，由于本人修改过模板，部分细节已不再相同。为尊重原作者的劳动成果，我没有对后续章节进行修改，阅读时请对照 \texttt{README.md} 中的修改内容说明。
