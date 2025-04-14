@@ -100,8 +100,10 @@
 	% 如有需要使用主要符号对照表
 	% \include{chap/deno}
 
-	\mainmatter
+    \mainmatter
+    \fancypageonly
 	\include{chap/chap1}
+    \fancypageonly
 	\include{chap/chap2}
 	\include{chap/chap3}
 	\include{chap/chap4}
@@ -109,6 +111,8 @@
 	\include{chap/chap6}
     
     \appendix
+    
+    \fancyempty
     \renewcommand{\bibname}{参考文献}
     \printbibliography[heading = bibintoc]
     % 如有需要使用研究生成果页

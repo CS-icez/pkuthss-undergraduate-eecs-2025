@@ -414,8 +414,8 @@
             number = \textbf{\arabic{chapter}},
             format = {\zihao{3}\heiti}
         },
-		section = {format = {\zihao{3}\heiti}},
-		subsection = {format = {\zihao{4}\heiti}}
+		section = {format = {\zihao{3}}},
+		subsection = {format = {\zihao{4}}}
 	}
 \else
 	\ctexset{
@@ -424,6 +424,21 @@
 		subsection = {format = {\zihao{4}\heiti}}
 	}
 \fi
+
+\newcommand{\defaultchapterformat}{
+  \ctexset{
+    chapter = {
+      format = {\zihao{3}\heiti}
+    }
+  }
+}
+\newcommand{\centeredchapterformat}{
+  \ctexset{
+    chapter = {
+      format = {\centering\zihao{3}\heiti}
+    }
+  }
+}
 
 % `\MakeUppercase' works problematically.
 % eg. it converts `\cite{ctex}' into `\cite{CTEX}'.
@@ -441,18 +456,39 @@
 	}
 \fi
 % The actual page style setup.
-\fancypagestyle{plain}{
-	\fancyhf{}\renewcommand*{\headrulewidth}{0.75bp}
-	\fancyfoot[C]{\zihao{5}\normalfont{\thepage}}
-	\if@twoside
-		% \fancyhead[CE]{\zihao{5}\normalfont{\cuniversity\cthesisname}}
-		\fancyhead[CE]{\zihao{5}\normalfont{\cthesisname}}
-		\fancyhead[CO]{\zihao{5}\normalfont\thss@int@setcase{\leftmark}}
-	\else
-		\fancyhead[C]{\zihao{5}\normalfont\thss@int@setcase{\leftmark}}
-	\fi
+\newcommand{\fancyempty}{
+    \fancypagestyle{plain}{
+    	\renewcommand*{\headrulewidth}{0bp}
+        \fancyhead{}
+        \fancyfoot[C]{}
+    }
+    \pagestyle{plain}
 }
-\pagestyle{plain}
+\newcommand{\fancyheadlineonly}{
+    \fancypagestyle{plain}{
+    	\renewcommand*{\headrulewidth}{0.75bp}
+        \fancyhead{}
+        \fancyfoot[C]{}
+    }
+    \pagestyle{plain}
+}
+\newcommand{\fancylinetextpage}[1]{
+    \fancypagestyle{plain}{
+    	\renewcommand*{\headrulewidth}{0.75bp}
+        \fancyhead[C]{#1}
+        \fancyfoot[C]{\zihao{5}\heiti{第 \thepage 页}}
+    }
+    % \pagestyle{plain}
+}
+\newcommand{\fancypageonly}{
+    \fancypagestyle{plain}{
+        \renewcommand*{\headrulewidth}{0bp}
+        \fancyhead{}
+        \fancyfoot[C]{\zihao{5}\heiti{第 \thepage 页}}
+    }
+    \pagestyle{plain}
+}
+\fancyempty
 
 % This places a bookmark pointing to somewhere near the page header;
 % Result of simple `\chapter{...} \pdfbookmark{...}' does not look nice,
