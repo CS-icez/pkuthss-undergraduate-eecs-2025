@@ -165,7 +165,7 @@
 % cf. <https://github.com/CTeX-org/ctex-kit/issues/454>.
 \ifthss@opt@pkufont\RequirePackage{amsmath}\fi
 % pkuthss is based on ctexbook; we use `xiao 4' as default font size.
-\LoadClass[a4paper,\thss@encoding,zihao=-4,fontset=none]{ctexbook}[2014/03/06]
+\LoadClass[a4paper,\thss@encoding,zihao=-4,fontset=none,openany]{ctexbook}[2014/03/06]
 % ctex 2.x no longer loads ifpdf and ifxetex by itself.
 \RequirePackage{ifpdf, ifxetex}
 % Provides support for `key = val' grammar.
@@ -208,7 +208,7 @@
 \ifthss@opt@pkufont
 	% Use Times New Roman / Arial according to school regulation.
 	% Option used to prevent newtxtext from manipulating footnote marks.
-	\RequirePackage[defaultsups]{newtxtext}
+	% \RequirePackage[defaultsups]{newtxtext}
 	\RequirePackage[cmintegrals, varg]{newtxmath}
 \else
 	% Provides `\Box' for originauth.tex if newtx is absent.
@@ -409,9 +409,13 @@
 }
 \ifthss@opt@ugly
 	\ctexset{
-		chapter = {format = {\zihao{3}\heiti\centering}},
-		section = {format = {\zihao{4}\heiti}},
-		subsection = {format = {\fontsize{13bp}{15.6bp}\selectfont\heiti}}
+		chapter = {
+            name = {},
+            number = \textbf{\arabic{chapter}},
+            format = {\zihao{3}\heiti}
+        },
+		section = {format = {\zihao{3}\heiti}},
+		subsection = {format = {\zihao{4}\heiti}}
 	}
 \else
 	\ctexset{
@@ -498,7 +502,7 @@
 		% Title of the thesis.
 		{%
 			\zihao{2}\linespread{1.6}\selectfont{\label@ctitle}%
-			\thss@int@fillinblank{2}{0.64\textwidth}{\heiti{\zihao{3}\@ctitle} \\ \heiti{\zihao{5}\@etitle}}%
+			\thss@int@fillinblank{3}{0.64\textwidth}{\heiti{\zihao{3}\@ctitle} \\ \heiti{\zihao{3}\@etitle}}%
 		}
 		
 		\vfill
@@ -556,7 +560,9 @@
 % Typeset the Chinese abstract.
 \newenvironment{cabstract}{%
 	\thss@int@pdfmark{\cabstractname}{cabstract}
-	\chapter*{\cabstractname}\markboth{\cabstractname}{}%
+    \begin{center}
+        \zihao{3}{\textbf{\sffamily\cabstractname}}
+    \end{center}
 }{% Keywords at the bottom of the page.
 	\vfill\noindent\label@ckeywords{\@ckeywords}%
 }
@@ -564,14 +570,11 @@
 % Typeset the English abstract & double-blind review.
 \newenvironment{eabstract}{%
 	\thss@int@pdfmark{\eabstractname}{eabstract}
-	\chapter*{\sffamily\@etitle}\markboth{\eabstractname}{}
   \ifthss@opt@blind
     \begin{center}\textbf{\sffamily\eabstractname}\end{center}\par%
   \else
     \begin{center}
-	  	{\@eauthor} ({\@emajor})\\
-	  	{\label@ementor}{\@ementor}\\[2em]
-		  \textbf{\sffamily\eabstractname}
+		  \zihao{3}{\textbf{\sffamily\eabstractname}}
 	  \end{center}
   \fi\par%
 }{% Keywords at the bottom of the page.

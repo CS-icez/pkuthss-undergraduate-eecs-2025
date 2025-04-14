@@ -25,7 +25,7 @@
   % windows*, mac为商业字体，如需使用请遵循相应版权协议(默认下overleaf中不可用)
   % fandol与windows效果相近，但字符库偏少，推荐使用(默认);
   % ubuntu字体效果偏差较大; 设为none时需自行配置字体集;
-\usepackage[backend=biber,style=gb7714-2015]{biblatex}
+\usepackage[backend=biber,style=numeric-comp,sorting=none,isbn=false,doi=false,url=false]{biblatex}
   % 参考文献遵循GB/T 7714-2015标准，使用biblatex-gb7714-2015 宏包。
   % 此处使用顺序编码制，如使用著者-出版年制则更改为b7714-2015ay。
 \input{chap/ReviewTableHead}
@@ -49,29 +49,32 @@
 \setlength{\bibitemsep}{3bp}
 \renewcommand*{\bibfont}{\zihao{5}\linespread{1.27}\selectfont}
 
+\usepackage{xspace}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage[ruled, vlined, linesnumbered]{algorithm2e}
+
 \pkuthssinfo{
-	cthesisname = {基于XXXX的XXXX系统设计与实现}, %
+	cthesisname = {一个说长不长说短不短的中文题目}, %
  	thesiscover = {本科生毕业论文},
-	ethesisname = {Master Thesis},
-	ctitle = {基于XXXX的XXXX系统设计与实现},
-	etitle = {Design and implementation of a XXXXX system based on XXXX},
-	cauthor = {扎克·施耐德}, eauthor = {Zack Snyder},
-	studentid = {180XXXXXXX},
+	ethesisname = {An English Title That is Neither Particularly Long nor Particularly Short},
+	ctitle = {一个说长不长说短不短的中文题目},
+	etitle = {\textbf{An English Title That is Neither Particularly Long nor Particularly Short}},
+	cauthor = {艾斯伊兹}, eauthor = {icez},
+	studentid = {210001XXXX},
 	% 具体时间以教务为准，初稿3月，送审4月，答辩5月，最终6月。
-	date = {\zhdigits{2022}\ \ 年\ \ \zhnumber{6}\ \ 月},
-	school = {XXXXXX学院},
-	cmajor = {XXXX}, emajor = {XXXX},
-	direction = {XXXX},
+	date = {\zhdigits{2025}\heiti{年\zhnumber{5}月}},
+	school = {信息科学技术学院},
+	cmajor = {自学与开源科学}, emajor = {这个字段不会被显示},
+	direction = {这个字段不会被显示},
 	mentorlines = {1}, % 导师个数
-	% 副教授 A.P. 讲师 Lec.
-	cmentor = {XXX\ \ 教授}, ementor = {Prof.\ XXX},
+	cmentor = {ChatGPT}, ementor = {这个字段不会被显示},
 	ckeywords = {A，B，C，D},
 	ekeywords = {A,B,C,D},
 	% 盲审模式参数, 需在documentclass增加blind
 	blindid = {XXXXXXXXX}, discipline = {XXXX}
 }
 \addbibresource{ref.bib}
-
 
 \begin{document}
 	\frontmatter
@@ -95,7 +98,7 @@
 	\renewcommand{\contentsname}{\centerline{目\quad 录}} % skipher
 	\tableofcontents
 	% 如有需要使用主要符号对照表
-	\include{chap/deno}
+	% \include{chap/deno}
 
 	\mainmatter
 	\include{chap/chap1}
@@ -106,9 +109,10 @@
 	\include{chap/chap6}
     
     \appendix
+    \renewcommand{\bibname}{参考文献}
     \printbibliography[heading = bibintoc]
     % 如有需要使用研究生成果页
-    \include{chap/ach}
+    % \include{chap/ach}
 
 	\backmatter
 	\include{chap/ack}
