@@ -4,6 +4,7 @@
 % Copyright (c) 2010-2021 Casper Ti. Vector
 % Copyright (c) 2021 Kurapica
 % Copyright (c) 2021 iofu728
+% Copyright (c) 2025 CS_icez
 %
 % This work may be distributed and/or modified under the conditions of the
 % LaTeX Project Public License, either version 1.3 of this license or (at

@@ -10,13 +10,18 @@ Overleaf 链接：TODO
 
 PDF 文件：TODO
 
+## 毕设流程提示
+
+TODO
+
 ## 修改内容
 
 - 整体：
     - 开启 `ctexbook` 文档类的 `openany` 选项。
-    - 取消 `newtxtext` 包的使用：该包会导致英文无法正常使用 `textbf` `textit` `textit` 等字体风格。
+    - 取消 `newtxtext` 包的使用。该包会导致英文无法正常使用 `textbf` `textit` `textit` 等字体风格。
 - 封面：
-    - 增加一个标题行：如有需要可在 [](./pkuthss.cls) 505 行修改标题行的数量和宽度。
+    - 将 `img/pku-fig-logo.png` 和 `img/pku-text-logo.png` 替换为同名 PDF 文件，以加速编译。
+    - 增加一个标题行。如有需要可在 [](./pkuthss.cls) 505 行修改标题行的数量和宽度。
     - 英文标题加粗，使用三号字体。
     - date 字段去除空格，后三个字使用黑体。
 - 导师评阅表：
@@ -44,7 +49,6 @@ PDF 文件：TODO
     - 删除此页。
 - 致谢：
     - 去除页眉文本、页眉线、页脚。
-- 原创性声明和使用授权说明：
 
 ## 许可证
 
