@@ -57,61 +57,61 @@
 \usepackage[ruled, vlined, linesnumbered]{algorithm2e}
 
 \pkuthssinfo{
-	cthesisname = {一个说长不长说短不短的中文题目}, %
- 	thesiscover = {本科生毕业论文},
-	ethesisname = {An English Title That is Neither Particularly Long nor Particularly Short},
-	ctitle = {一个说长不长说短不短的中文题目},
-	etitle = {\textbf{An English Title That is Neither Particularly Long nor Particularly Short}},
-	cauthor = {艾斯伊兹}, eauthor = {icez},
-	studentid = {210001XXXX},
-	% 具体时间以教务为准，初稿3月，送审4月，答辩5月，最终6月。
-	date = {\zhdigits{2025}\heiti{年\zhnumber{5}月}},
-	school = {信息科学技术学院},
-	cmajor = {自学与开源科学}, emajor = {这个字段不会被显示},
-	direction = {这个字段不会被显示},
-	mentorlines = {1}, % 导师个数
-	cmentor = {ChatGPT}, ementor = {这个字段不会被显示},
-	ckeywords = {A，B，C，D},
-	ekeywords = {A,B,C,D},
-	% 盲审模式参数, 需在documentclass增加blind
-	blindid = {XXXXXXXXX}, discipline = {XXXX}
+    cthesisname = {一个说长不长说短不短的中文题目}, %
+    thesiscover = {本科生毕业论文},
+    ethesisname = {An English Title That is Neither Particularly Long nor Particularly Short},
+    ctitle = {一个说长不长说短不短的中文题目},
+    etitle = {\textbf{An English Title That is Neither Particularly Long nor Particularly Short}},
+    cauthor = {艾斯伊兹}, eauthor = {icez},
+    studentid = {210001XXXX},
+    % 具体时间以教务为准，初稿3月，送审4月，答辩5月，最终6月。
+    date = {\zhdigits{2025}\heiti{年\zhnumber{5}月}},
+    school = {信息科学技术学院},
+    cmajor = {自学与开源科学}, emajor = {这个字段不会被显示},
+    direction = {这个字段不会被显示},
+    mentorlines = {1}, % 导师个数
+    cmentor = {ChatGPT}, ementor = {这个字段不会被显示},
+    ckeywords = {A，B，C，D},
+    ekeywords = {A,B,C,D},
+    % 盲审模式参数, 需在documentclass增加blind
+    blindid = {XXXXXXXXX}, discipline = {XXXX}
 }
 \addbibresource{ref.bib}
 
 \begin{document}
-	\frontmatter
-	\pagestyle{empty}
-	\maketitle
-	\clearpage
-	\input{chap/ReviewTable}
-	\clearpage
-	%\cleardoublepage
-	% 需替换门户版权声明pdf
-	
-	\include{chap/copy}
-
-	%\cleardoublepage
-	\clearpage
-	\pagestyle{plain}
-	\setcounter{page}{0}
-	\pagenumbering{Roman}
-	\include{chap/abs}
-	% \renewcommand{\contentsname}{\centerline{目\hphantom{汉字}录}} % skipher
-	\renewcommand{\contentsname}{\centerline{目\quad 录}} % skipher
-	\tableofcontents
-	% 如有需要使用主要符号对照表
-	% \include{chap/deno}
+    \frontmatter
+    \pagestyle{empty}
+    \maketitle
+    \clearpage
+    \input{chap/ReviewTable}
+    \clearpage
+    %\cleardoublepage
+    % 需替换门户版权声明pdf
+    
+    \include{chap/copy}
+    
+    %\cleardoublepage
+    \clearpage
+    \pagestyle{plain}
+    \setcounter{page}{0}
+    \pagenumbering{Roman}
+    \include{chap/abs}
+    % \renewcommand{\contentsname}{\centerline{目\hphantom{汉字}录}} % skipher
+    \renewcommand{\contentsname}{\centerline{目\quad 录}} % skipher
+    \tableofcontents
+    % 如有需要使用主要符号对照表
+    % \include{chap/deno}
 
     \mainmatter
     \fancypageonly
     \include{chap/chap0}
     \fancypageonly
-	\include{chap/chap1}
-	\include{chap/chap2}
-	\include{chap/chap3}
-	\include{chap/chap4}
-	\include{chap/chap5}
-	\include{chap/chap6}
+    \include{chap/chap1}
+    \include{chap/chap2}
+    \include{chap/chap3}
+    \include{chap/chap4}
+    \include{chap/chap5}
+    \include{chap/chap6}
     
     \appendix
     
@@ -121,10 +121,10 @@
     % 如有需要使用研究生成果页
     % \include{chap/ach}
 
-	\backmatter
-	\include{chap/ack}
-	% 需替换门户原创页pdf/扫描pdf
-	\include{chap/origin}
+    \backmatter
+    \include{chap/ack}
+    % 需替换门户原创页pdf/扫描pdf
+    \include{chap/origin}
 
 \end{document}
 
