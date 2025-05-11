@@ -630,15 +630,15 @@
 \newcommand\thss@set@toc@format{%
   \contentsmargin{\z@}%
   \titlecontents{chapter}
-    [\z@]{\addvspace{6bp}\zihao{-4}\heiti}
+    [\z@]{\addvspace{6bp}\zihao{5}\heiti}
     {\contentspush{\thecontentslabel\quad}}{}
     {\thss@leaders\thecontentspage}%
   \titlecontents{section}
-    [1em]{}
+    [1em]{\zihao{5}}
     {\contentspush{\thecontentslabel\quad}}{}
     {\thss@leaders\thecontentspage}%
   \titlecontents{subsection}
-    [2em]{}
+    [2em]{\zihao{5}}
     {\contentspush{\thecontentslabel\quad}}{}
     {\thss@leaders\thecontentspage}%
 }
