@@ -21,7 +21,7 @@ TODO
     - 取消 `newtxtext` 包的使用。该包会导致英文无法正常使用 `textbf` `textit` `textit` 等字体风格。
 - 封面：
     - 将 `img/pku-fig-logo.png` 和 `img/pku-text-logo.png` 替换为同名 PDF 文件，以加速编译。
-    - 增加一个标题行。如有需要可在 [pkuthss.cls](./pkuthss.cls) 的第 542 行修改标题行的数量和宽度。
+    - 无论中英文标题占据几行，其后都只有一条横线。
     - 英文标题加粗，使用三号字体。
     - date 字段去除空格，后三个字使用黑体。
 - 导师评阅表：

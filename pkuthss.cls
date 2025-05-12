@@ -537,10 +537,17 @@
 		}
 		\vfill
 		% Title of the thesis.
-		{%
-			\zihao{2}\linespread{1.6}\selectfont{\label@ctitle}%
-			\thss@int@fillinblank{3}{0.64\textwidth}{\heiti{\zihao{3}\@ctitle} \\ \heiti{\zihao{3}\@etitle}}%
-		}
+		% }
+        {
+          \parbox{0.15\textwidth}{\zihao{2}\label@ctitle}
+          \parbox{0.64\textwidth}{\centering\heiti\zihao{3}\@ctitle}
+          \par\vspace{1em}
+          \hspace{0.15\textwidth}\rule{0.64\textwidth}{0.4pt}
+          \par\vspace{1em}
+          \hspace{0.15\textwidth}\parbox{0.64\textwidth}{\centering\heiti\zihao{3}\@etitle}
+          \par\vspace{1em}
+          \hspace{0.15\textwidth}\rule{0.64\textwidth}{0.4pt}
+        }
 		
 		\vfill
 		% Information about the author.
