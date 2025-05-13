@@ -416,7 +416,7 @@
             format = {\zihao{3}\heiti}
         },
 		section = {format = {\zihao{3}}},
-		subsection = {format = {\zihao{4}}}
+		subsection = {format = {\zihao{4}}, indent = \cftsubsecindent}
 	}
 \else
 	\ctexset{
