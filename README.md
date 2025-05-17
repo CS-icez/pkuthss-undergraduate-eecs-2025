@@ -17,8 +17,9 @@ TODO
 ## 修改内容
 
 - 整体：
-    - 开启 `ctexbook` 文档类的 `openany` 选项，并在导引区加入 `\let\cleardoublepage\clearpage`。阻止文档自动添加空白页。
+    - 阻止文档自动添加空白页。
     - 取消 `newtxtext` 包的使用。该包会导致英文无法正常使用 `textbf` `textit` `textit` 等字体风格。
+    - 删除对本科生无用的内容。
 - 封面：
     - 将 `img/pku-fig-logo.png` 和 `img/pku-text-logo.png` 替换为同名 PDF 文件，以加速编译。
     - 无论中英文标题占据几行，其后都只有一条横线。
