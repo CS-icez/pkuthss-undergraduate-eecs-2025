@@ -2,17 +2,11 @@
 
 ## 仓库说明
 
-本项目基于[该 Overleaf 模板](https://www.overleaf.com/latex/templates/pku-undergraduate-thesis-template-modified-from-pkuthss/pfrbvymbwbxk)进行修改，使其更符合信科教务在 2025 下发的本科毕设模板。本项目仅在 Overleaf 进行过测试。
-
-在通过毕业审查后，我会开源这个仓库。
+本项目基于[该 Overleaf 模板](https://www.overleaf.com/latex/templates/pku-undergraduate-thesis-template-modified-from-pkuthss/pfrbvymbwbxk)进行修改，使其更符合信科教务在 2025 下发的本科毕设模板。本项目仅在 Overleaf 进行过测试，使用 XeLaTeX 编译器。
 
 Overleaf 链接：TODO
 
-PDF 文件：TODO
-
-## 毕设流程提示
-
-TODO
+PDF 文件：[pkuthss_undergraduate_eecs_2025.pdf](./pkuthss_undergraduate_eecs_2025.pdf)
 
 ## 修改内容
 
