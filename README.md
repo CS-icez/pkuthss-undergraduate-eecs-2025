@@ -4,9 +4,9 @@
 
 本项目基于[该 Overleaf 模板](https://www.overleaf.com/latex/templates/pku-undergraduate-thesis-template-modified-from-pkuthss/pfrbvymbwbxk)进行修改，使其更符合信科教务在 2025 下发的本科毕设模板。本项目仅在 Overleaf 进行过测试，使用 XeLaTeX 编译器。
 
-Overleaf 链接：TODO
+模板效果：[pkuthss_undergraduate_eecs_2025.pdf](./pkuthss_undergraduate_eecs_2025.pdf)
 
-PDF 文件：[pkuthss_undergraduate_eecs_2025.pdf](./pkuthss_undergraduate_eecs_2025.pdf)
+使用方式：在 [Overleaf 主页](https://www.overleaf.com/project)点击 New project -> Upload project，上传本项目的压缩包，在设置中切换为 XeLaTeX 编译器。
 
 ## 修改内容
 
